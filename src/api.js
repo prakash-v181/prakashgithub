@@ -1,10 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://backendgithub-uz08.onrender.com/api",
+  baseURL: `${import.meta.env.VITE_API_BASE_URL}/api`,
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: true, // ✅ important
 });
 
 // 🔐 Automatically attach token
