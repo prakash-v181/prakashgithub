@@ -1,0 +1,610 @@
+/* =====================================================
+   GitHub-like UI using Bootstrap utility style approach
+   Works with your existing React layout (Navbar, Dashboard,
+   Profile, Sidebar, Repositories, Git Ops)
+   ===================================================== */
+
+/* Global GitHub dark theme */
+:root {
+  --gh-bg: #0d1117;
+  --gh-bg-subtle: #161b22;
+  --gh-bg-soft: #21262d;
+  --gh-border: #30363d;
+  --gh-border-soft: #21262d;
+  --gh-text: #c9d1d9;
+  --gh-text-muted: #8b949e;
+  --gh-accent: #238636;
+  --gh-accent-hover: #2ea043;
+  --gh-accent-soft: rgba(35, 134, 54, 0.18);
+  --gh-danger: #da3633;
+  --gh-danger-soft: rgba(248, 81, 73, 0.24);
+  --gh-link: #58a6ff;
+  --gh-link-hover: #79c0ff;
+  --gh-radius-sm: 4px;
+  --gh-radius-md: 6px;
+  --gh-radius-lg: 12px;
+}
+
+/* Basic reset */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif;
+  background-color: var(--gh-bg);
+  color: var(--gh-text);
+}
+
+/* Make Bootstrap container dark-friendly if you use it */
+.container,
+.container-fluid {
+  color: var(--gh-text);
+}
+
+/* -----------------------------------------------------
+   Top Navbar (use with Bootstrap .navbar + custom classes)
+   ----------------------------------------------------- */
+
+.navbar.navbar-github {
+  background-color: #010409;
+  border-bottom: 1px solid var(--gh-border);
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.navbar-github .navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f0f6fc;
+  font-weight: 600;
+}
+
+.navbar-github .navbar-brand svg,
+.navbar-github .navbar-brand img {
+  width: 28px;
+  height: 28px;
+}
+
+.navbar-github .form-control {
+  background-color: var(--gh-bg-soft);
+  border-color: var(--gh-border);
+  color: var(--gh-text);
+  font-size: 13px;
+}
+
+.navbar-github .form-control::placeholder {
+  color: var(--gh-text-muted);
+}
+
+.navbar-github .nav-link {
+  color: var(--gh-text-muted);
+  font-size: 13px;
+  padding: 4px 8px;
+}
+
+.navbar-github .nav-link:hover,
+.navbar-github .nav-link.active {
+  color: var(--gh-text);
+}
+
+/* Right-side avatar and buttons in navbar */
+.navbar-github .gh-avatar-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.navbar-github .gh-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0969da, #238636);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid rgba(240, 246, 252, 0.15);
+}
+
+/* -----------------------------------------------------
+   Page Layout: Sidebar + Main (use Bootstrap row/col)
+   ----------------------------------------------------- */
+
+.gh-page {
+  padding: 16px;
+}
+
+.gh-card {
+  background-color: var(--gh-bg-subtle);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius-md);
+}
+
+.gh-card-header {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--gh-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gh-card-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.gh-card-subtitle {
+  font-size: 12px;
+  color: var(--gh-text-muted);
+}
+
+.gh-card-body {
+  padding: 12px;
+}
+
+/* -----------------------------------------------------
+   Sidebar (Profile + Repositories section)
+   works inside Bootstrap col-xx-3
+   ----------------------------------------------------- */
+
+.gh-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Profile block */
+.gh-profile-block {
+  background-color: var(--gh-bg-subtle);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius-md);
+  padding: 16px;
+}
+
+.gh-profile-avatar-lg {
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0969da, #238636);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.gh-profile-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.gh-profile-username {
+  font-size: 14px;
+  color: var(--gh-text-muted);
+}
+
+.gh-profile-bio {
+  font-size: 13px;
+  margin-top: 6px;
+  color: var(--gh-text);
+}
+
+.gh-profile-meta {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--gh-text-muted);
+}
+
+/* Sidebar sections */
+.gh-sidebar-section {
+  background-color: var(--gh-bg-subtle);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius-md);
+  overflow: hidden;
+}
+
+.gh-sidebar-section-header {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--gh-border);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--gh-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gh-sidebar-item {
+  padding: 8px 10px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gh-text-muted);
+  cursor: pointer;
+  border-left: 2px solid transparent;
+}
+
+.gh-sidebar-item:hover {
+  background-color: var(--gh-bg-soft);
+  color: var(--gh-text);
+}
+
+.gh-sidebar-item.active {
+  border-left-color: var(--gh-accent);
+  background-color: var(--gh-bg-soft);
+  color: var(--gh-text);
+}
+
+/* Sidebar repositories list */
+.gh-sidebar-repo {
+  padding: 8px 10px;
+  border-top: 1px solid var(--gh-border);
+  cursor: pointer;
+}
+
+.gh-sidebar-repo-name {
+  font-size: 13px;
+  color: var(--gh-link);
+}
+
+.gh-sidebar-repo-name:hover {
+  color: var(--gh-link-hover);
+}
+
+.gh-sidebar-repo-desc {
+  font-size: 12px;
+  color: var(--gh-text-muted);
+}
+
+/* -----------------------------------------------------
+   Buttons (Bootstrap-like, GitHub flavored)
+   ----------------------------------------------------- */
+
+.btn-gh {
+  background-color: var(--gh-bg-soft);
+  border-color: var(--gh-border);
+  color: var(--gh-text);
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: var(--gh-radius-md);
+}
+
+.btn-gh:hover {
+  background-color: var(--gh-border-soft);
+  color: var(--gh-text);
+}
+
+.btn-gh-primary {
+  background-color: var(--gh-accent);
+  border-color: var(--gh-accent);
+  color: #fff;
+}
+
+.btn-gh-primary:hover {
+  background-color: var(--gh-accent-hover);
+  border-color: var(--gh-accent-hover);
+  color: #fff;
+}
+
+.btn-gh-danger {
+  background-color: var(--gh-danger-soft);
+  border-color: var(--gh-danger);
+  color: var(--gh-danger);
+}
+
+.btn-gh-danger:hover {
+  background-color: rgba(248, 81, 73, 0.4);
+  border-color: var(--gh-danger);
+  color: #fff;
+}
+
+/* Small pill badges */
+.badge-gh {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  font-size: 11px;
+  border-radius: 999px;
+  border: 1px solid var(--gh-border);
+  background-color: var(--gh-bg-soft);
+  color: var(--gh-text-muted);
+}
+
+.badge-gh-success {
+  background-color: var(--gh-accent-soft);
+  border-color: var(--gh-accent);
+  color: var(--gh-accent);
+}
+
+.badge-gh-danger {
+  background-color: var(--gh-danger-soft);
+  border-color: var(--gh-danger);
+  color: var(--gh-danger);
+}
+
+/* -----------------------------------------------------
+   Dashboard main area (use Bootstrap col-xx-9)
+   ----------------------------------------------------- */
+
+.gh-hero {
+  background: radial-gradient(circle at top left, rgba(88, 166, 255, 0.12), transparent 60%),
+    radial-gradient(circle at top right, rgba(35, 134, 54, 0.12), transparent 60%);
+  border-radius: var(--gh-radius-lg);
+  border: 1px solid var(--gh-border-soft);
+  padding: 18px 16px;
+  margin-bottom: 12px;
+}
+
+.gh-hero-title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.gh-hero-subtitle {
+  font-size: 14px;
+  color: var(--gh-text-muted);
+  margin-top: 4px;
+}
+
+/* Git operations cards (Init / Add / Commit / Push) */
+
+.gh-git-ops-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.gh-git-op-card {
+  background-color: var(--gh-bg-soft);
+  border-radius: var(--gh-radius-md);
+  border: 1px solid var(--gh-border);
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.16s ease, border-color 0.16s ease, transform 0.08s ease;
+}
+
+.gh-git-op-card:hover {
+  background-color: var(--gh-accent-soft);
+  border-color: var(--gh-accent);
+  transform: translateY(-1px);
+}
+
+.gh-git-op-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.gh-git-op-shortcut {
+  font-size: 11px;
+  color: var(--gh-text-muted);
+}
+
+.gh-git-op-desc {
+  font-size: 12px;
+  color: var(--gh-text-muted);
+  margin-top: 4px;
+}
+
+/* -----------------------------------------------------
+   Repositories list & repo page
+   ----------------------------------------------------- */
+
+.gh-repo-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.gh-repo-item {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--gh-border);
+}
+
+.gh-repo-item:last-child {
+  border-bottom: none;
+}
+
+.gh-repo-name-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gh-repo-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gh-link);
+  cursor: pointer;
+}
+
+.gh-repo-name:hover {
+  color: var(--gh-link-hover);
+}
+
+.gh-repo-visibility {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--gh-border);
+  color: var(--gh-text-muted);
+}
+
+.gh-repo-desc {
+  font-size: 12px;
+  margin-top: 2px;
+  color: var(--gh-text-muted);
+}
+
+.gh-repo-meta {
+  font-size: 11px;
+  margin-top: 4px;
+  color: var(--gh-text-muted);
+  display: flex;
+  gap: 10px;
+}
+
+/* Repo page header and tabs */
+
+.gh-repo-header {
+  border-bottom: 1px solid var(--gh-border);
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+
+.gh-repo-path {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.gh-repo-path span {
+  color: var(--gh-text-muted);
+  font-weight: 400;
+}
+
+.gh-repo-tabs {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+  border-bottom: 1px solid var(--gh-border);
+}
+
+.gh-repo-tab {
+  padding: 8px 0;
+  font-size: 13px;
+  color: var(--gh-text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.gh-repo-tab:hover {
+  color: var(--gh-text);
+}
+
+.gh-repo-tab.active {
+  color: var(--gh-text);
+  border-bottom-color: var(--gh-accent);
+}
+
+/* Simple code/commit area */
+
+.gh-code-box {
+  background-color: var(--gh-bg-soft);
+  border-radius: var(--gh-radius-md);
+  border: 1px solid var(--gh-border);
+  padding: 10px;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 12px;
+  color: var(--gh-text-muted);
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* Activity / commits list */
+
+.gh-activity-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.gh-activity-item {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--gh-border);
+  display: flex;
+  gap: 8px;
+}
+
+.gh-activity-item:last-child {
+  border-bottom: none;
+}
+
+.gh-activity-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0969da, #238636);
+  flex-shrink: 0;
+}
+
+.gh-activity-body {
+  font-size: 12px;
+}
+
+.gh-activity-title {
+  color: var(--gh-link);
+  cursor: pointer;
+}
+
+.gh-activity-title:hover {
+  color: var(--gh-link-hover);
+}
+
+.gh-activity-meta {
+  color: var(--gh-text-muted);
+  margin-top: 2px;
+}
+
+/* -----------------------------------------------------
+   Forms (Login / Signup / New Repo modal)
+   ----------------------------------------------------- */
+
+.gh-form-label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.gh-form-control {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: var(--gh-radius-md);
+  border: 1px solid var(--gh-border);
+  background-color: var(--gh-bg-soft);
+  color: var(--gh-text);
+  font-size: 13px;
+}
+
+.gh-form-control::placeholder {
+  color: var(--gh-text-muted);
+}
+
+.gh-auth-page {
+  min-height: 100vh;
+  background-color: var(--gh-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.gh-auth-card {
+  width: 100%;
+  max-width: 360px;
+  background-color: var(--gh-bg-subtle);
+  border: 1px solid var(--gh-border);
+  border-radius: var(--gh-radius-md);
+  padding: 16px;
+}
+
+/* -----------------------------------------------------
+   Responsive tweaks
+   ----------------------------------------------------- */
+
+@media (max-width: 992px) {
+  .gh-git-ops-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .gh-git-ops-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

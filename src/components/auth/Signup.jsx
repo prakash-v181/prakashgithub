@@ -1,0 +1,265 @@
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../../authContext";
+import api from "../../api";
+import "./auth.css";
+
+const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const { setCurrentUser } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+    setLoading(true);
+
+    try {
+      console.log("📤 Sending signup request:", { email, username, password });
+
+      const res = await api.post("/auth/register", {
+  email,
+  username,
+  password,
+});
+
+
+      console.log("✅ Signup response:", res.data);
+
+      if (res.data?.token) {
+        setSuccess("✅ Account created! Redirecting...");
+
+        localStorage.setItem("token", res.data.token);
+        console.log("💾 Token saved");
+
+        console.log("📡 Fetching user info...");
+        const meRes = await api.get("/auth/me");
+        console.log("✅ User info:", meRes.data);
+
+        setCurrentUser(meRes.data);
+
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
+      } else {
+        setError("Invalid response from server");
+      }
+    } catch (err) {
+      console.error("❌ Signup error:", err);
+
+      if (err.response?.status === 400) {
+        setError(err.response.data?.message || "Signup failed");
+      } else if (err.response?.status === 500) {
+        setError("Server error. Please try again later.");
+      } else {
+        setError(err.message || "Signup failed");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h2>Create your account</h2>
+          <p>Join our GitHub-like platform</p>
+        </div>
+
+        {error && <div className="error-message">⚠️ {error}</div>}
+
+        {success && <div className="success-message">{success}</div>}
+
+        <form onSubmit={handleSignup}>
+          <div className="form-group">
+            <label htmlFor="email">Email address</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              disabled={loading}
+              autoComplete="email"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              id="username"
+              type="text"
+              placeholder="octocat"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              disabled={loading}
+              autoComplete="username"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              disabled={loading}
+              autoComplete="new-password"
+            />
+          </div>
+
+          <button type="submit" disabled={loading} className="submit-btn">
+            {loading ? "Creating account..." : "Sign up"}
+          </button>
+        </form>
+
+        <div className="auth-footer">
+          <p>
+            Already have an account? <Link to="/auth">Sign in</Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Signup;
+
+
+
+
+
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import { useAuth } from "../../authContext";
+
+// import { PageHeader } from "@primer/react/drafts";
+// import { Box, Button } from "@primer/react";
+// import "./auth.css";
+
+// import logo from "../../assets/github-mark-white.svg";
+// import { Link } from "react-router-dom";
+
+// const Signup = () => {
+//   const [email, setEmail] = useState("");
+//   const [username, setUsername] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [loading, setLoading] = useState(false);
+
+//   const { setCurrentUser } = useAuth();
+
+//   const handleSignup = async (e) => {
+//     e.preventDefault();
+
+//     try {
+//       setLoading(true);
+//       const res = await axios.post("http://localhost:3002/signup", {
+//         email: email,
+//         password: password,
+//         username: username,
+//       });
+
+//       localStorage.setItem("token", res.data.token);
+//       localStorage.setItem("userId", res.data.userId);
+
+//       setCurrentUser(res.data.userId);
+//       setLoading(false);
+
+//       window.location.href = "/";
+//     } catch (err) {
+//       console.error(err);
+//       alert("Signup Failed!");
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <div className="login-wrapper">
+//       <div className="login-logo-container">
+//         <img className="logo-login" src={logo} alt="Logo" />
+//       </div>
+
+//       <div className="login-box-wrapper">
+//         <div className="login-heading">
+//           <Box sx={{ padding: 1 }}>
+//             <PageHeader>
+//               <PageHeader.TitleArea variant="large">
+//                 <PageHeader.Title>Sign Up</PageHeader.Title>
+//               </PageHeader.TitleArea>
+//             </PageHeader>
+//           </Box>
+//         </div>
+
+//         <div className="login-box">
+//           <div>
+//             <label className="label">Username</label>
+//             <input
+//               autoComplete="off"
+//               name="Username"
+//               id="Username"
+//               className="input"
+//               type="text"
+//               value={username}
+//               onChange={(e) => setUsername(e.target.value)}
+//             />
+//           </div>
+
+//           <div>
+//             <label className="label">Email address</label>
+//             <input
+//               autoComplete="off"
+//               name="Email"
+//               id="Email"
+//               className="input"
+//               type="email"
+//               value={email}
+//               onChange={(e) => setEmail(e.target.value)}
+//             />
+//           </div>
+
+//           <div className="div">
+//             <label className="label">Password</label>
+//             <input
+//               autoComplete="off"
+//               name="Password"
+//               id="Password"
+//               className="input"
+//               type="password"
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//             />
+//           </div>
+
+//           <Button
+//             variant="primary"
+//             className="login-btn"
+//             disabled={loading}
+//             onClick={handleSignup}
+//           >
+//             {loading ? "Loading..." : "Signup"}
+//           </Button>
+//         </div>
+
+//         <div className="pass-box">
+//           <p>
+//             Already have an account? <Link to="/auth">Login</Link>
+//           </p>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Signup;

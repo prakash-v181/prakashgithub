@@ -1,0 +1,242 @@
+/* ============================================
+   DESKTOP PROFILE - 2 Column Layout
+   ============================================ */
+
+.profile-container {
+  background: #0d1117;
+  min-height: calc(100vh - 60px);
+  color: #c9d1d9;
+  padding: 2rem;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  max-width: 1280px;
+  margin: 0 auto 3rem;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 3rem;
+  align-items: flex-start;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.profile-avatar {
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+}
+
+.profile-avatar img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid #30363d;
+  transition: all 0.3s;
+}
+
+.profile-avatar img:hover {
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 8px rgba(88, 166, 255, 0.1);
+}
+
+.avatar-placeholder {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #58a6ff, #0969da);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  color: #fff;
+  font-weight: bold;
+  border: 3px solid #30363d;
+}
+
+.profile-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.profile-info h1 {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+  color: #c9d1d9;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.profile-email {
+  color: #58a6ff;
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.profile-bio {
+  color: #8b949e;
+  margin: 0 0 2rem 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 3rem;
+  margin: 2rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid #30363d;
+  border-bottom: 1px solid #30363d;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #58a6ff;
+  margin: 0 0 0.25rem 0;
+}
+
+.stat-label {
+  color: #8b949e;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.logout-btn-profile {
+  background: #da3633;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s;
+  min-height: 44px;
+  width: auto;
+  align-self: flex-start;
+}
+
+.logout-btn-profile:hover {
+  background: #f85149;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(248, 81, 73, 0.3);
+}
+
+.logout-btn-profile:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   PROFILE CONTENT
+   ============================================ */
+
+.profile-content {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.profile-content h2 {
+  font-size: 1.75rem;
+  margin: 0 0 1.5rem 0;
+  color: #c9d1d9;
+}
+
+.activity-placeholder {
+  background: #161b22;
+  border: 2px dashed #30363d;
+  border-radius: 8px;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: #8b949e;
+}
+
+/* ============================================
+   RESPONSIVE - Tablet
+   ============================================ */
+
+@media (max-width: 1023px) {
+  .profile-header {
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .profile-info h1 {
+    font-size: 2rem;
+  }
+
+  .profile-stats {
+    gap: 2rem;
+  }
+}
+
+/* ============================================
+   RESPONSIVE - Mobile
+   ============================================ */
+
+@media (max-width: 767px) {
+  .profile-container {
+    padding: 1rem;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .profile-avatar {
+    position: static;
+  }
+
+  .profile-avatar img,
+  .avatar-placeholder {
+    width: 150px;
+    height: 150px;
+  }
+
+  .profile-info {
+    text-align: center;
+    width: 100%;
+  }
+
+  .profile-info h1 {
+    font-size: 1.75rem;
+  }
+
+  .profile-stats {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .stat-item {
+    align-items: center;
+  }
+
+  .logout-btn-profile {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .profile-content {
+    padding: 0 1rem;
+  }
+
+  .activity-placeholder {
+    padding: 2rem 1rem;
+  }
+}
