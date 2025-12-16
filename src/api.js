@@ -5,10 +5,10 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: true, // ✅ important
+  withCredentials: true,
 });
 
-// 🔐 Automatically attach token
+// Attach token automatically
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");

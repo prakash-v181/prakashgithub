@@ -444,7 +444,7 @@ export default Dashboard;
 //     const fetchRepositories = async () => {
 //       try {
 //         const response = await fetch(
-//           `http://localhost:3002/repo/user/${userId}`
+          // `https://backendgithub-uz08.onrender.com/repo/user/${userId}`
 //         );
 //         const data = await response.json();
 //         setRepositories(data.repositories);
@@ -455,7 +455,7 @@ export default Dashboard;
 
 //     const fetchSuggestedRepositories = async () => {
 //       try {
-//         const response = await fetch(`http://localhost:3002/repo/all`);
+        // const response = await fetch(`https://backendgithub-uz08.onrender.com`);
 //         const data = await response.json();
 //         setSuggestedRepositories(data);
 //         console.log(suggestedRepositories);
