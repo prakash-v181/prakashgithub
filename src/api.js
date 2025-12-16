@@ -1,10 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://backendgithub-uz08.onrender.com/api", // ✅ DEPLOYED BACKEND
-  headers: {
-    "Content-Type": "application/json",
-  },
+  baseURL: import.meta.env.VITE_API_BASE_URL,
+  withCredentials: true,
 });
 
 api.interceptors.request.use((config) => {
