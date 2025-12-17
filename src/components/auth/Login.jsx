@@ -12,7 +12,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // Clear old session
+  // Clear old session on page load
   useEffect(() => {
     localStorage.removeItem("token");
     setCurrentUser(null);
@@ -24,19 +24,17 @@ const Login = () => {
     setLoading(true);
 
     try {
-      console.log("📤 Sending login request:", { email, password });
+      console.log("📤 Sending login request");
 
-      // 1️⃣ Login request
+      // 1️⃣ Login
       const loginRes = await api.post("/auth/login", {
         email,
         password,
       });
 
-      console.log("✅ Login response:", loginRes.data);
-
       const token = loginRes.data?.token;
       if (!token) {
-        throw new Error("Token missing in response");
+        throw new Error("Token missing");
       }
 
       // 2️⃣ Save token
@@ -44,7 +42,6 @@ const Login = () => {
 
       // 3️⃣ Fetch current user
       const meRes = await api.get("/auth/me");
-      console.log("✅ User info:", meRes.data);
 
       // 4️⃣ Save user & redirect
       setCurrentUser(meRes.data);
@@ -53,13 +50,13 @@ const Login = () => {
       console.error("❌ Login error:", err);
 
       if (err.response?.status === 400) {
-        setError(err.response.data?.message || "Invalid email or password");
+        setError("Invalid email or password");
       } else if (err.response?.status === 401) {
-        setError("Unauthorized. Invalid credentials.");
+        setError("Unauthorized");
       } else if (err.response?.status === 500) {
-        setError("Server error. Try again later.");
+        setError("Server error");
       } else {
-        setError("Login failed. Check backend connection.");
+        setError("Backend not reachable");
       }
     } finally {
       setLoading(false);
@@ -69,54 +66,43 @@ const Login = () => {
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <div className="auth-header">
-          <h2>Welcome back</h2>
-          <p>Sign in to your GitHub-like account</p>
-        </div>
+        <h2>Welcome back</h2>
 
         {error && <div className="error-message">⚠️ {error}</div>}
 
         <form onSubmit={handleLogin}>
-          <div className="form-group">
-            <label>Email address</label>
-            <input
-              type="email"
-              placeholder="test@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              disabled={loading}
-            />
-          </div>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              disabled={loading}
-            />
-          </div>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-          <button type="submit" disabled={loading} className="submit-btn">
+          <button type="submit" disabled={loading}>
             {loading ? "Signing in..." : "Sign in"}
           </button>
         </form>
 
-        <div className="auth-footer">
-          <p>
-            New to GitHub-like? <Link to="/signup">Create an account</Link>
-          </p>
-        </div>
+        <p>
+          New user? <Link to="/signup">Create account</Link>
+        </p>
       </div>
     </div>
   );
 };
 
 export default Login;
+
+
 
 
 
