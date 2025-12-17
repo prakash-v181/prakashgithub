@@ -1,0 +1,284 @@
+/* ============================================
+   DESKTOP NAVBAR - Optimized for 1024px+
+   ============================================ */
+
+.navbar {
+  background: #0d1117;
+  border-bottom: 1px solid #30363d;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.navbar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+/* ============================================
+   LOGO - Desktop Enhanced
+   ============================================ */
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #c9d1d9;
+  text-decoration: none;
+  font-size: 1.35rem;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.5px;
+}
+
+.navbar-logo:hover {
+  color: #58a6ff;
+  transform: translateX(2px);
+}
+
+.logo-icon {
+  font-size: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  display: inline;
+  background: linear-gradient(135deg, #58a6ff, #79c0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   HAMBURGER MENU - Hidden on Desktop
+   ============================================ */
+
+.menu-toggle {
+  display: none;
+}
+
+/* ============================================
+   DESKTOP NAVIGATION MENU
+   ============================================ */
+
+.navbar-menu {
+  display: flex !important;
+  position: static;
+  flex-direction: row;
+  gap: 3rem;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-link {
+  color: #c9d1d9;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.5rem 0;
+  transition: all 0.2s;
+  display: block;
+  position: relative;
+  font-weight: 500;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #58a6ff;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover {
+  color: #58a6ff;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   USER SECTION - Desktop
+   ============================================ */
+
+.user-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  padding-left: 3rem;
+  border-left: 1px solid #30363d;
+  margin: 0;
+  border-top: none;
+  padding-top: 0;
+  width: auto;
+}
+
+.username {
+  color: #8b949e;
+  font-size: 0.9rem;
+  font-weight: 500;
+  min-width: 120px;
+  text-align: right;
+}
+
+.logout-btn {
+  background: #da3633;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+  min-height: 36px;
+  width: auto;
+}
+
+.logout-btn:hover {
+  background: #f85149;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(248, 81, 73, 0.3);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE - Tablet
+   ============================================ */
+
+@media (max-width: 1023px) {
+  .navbar-container {
+    padding: 0 1rem;
+  }
+
+  .navbar-menu {
+    gap: 1.5rem;
+  }
+
+  .user-section {
+    gap: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .username {
+    display: none;
+  }
+}
+
+/* ============================================
+   RESPONSIVE - Mobile
+   ============================================ */
+
+@media (max-width: 767px) {
+  .navbar {
+    padding: 0.75rem 0;
+  }
+
+  .navbar-container {
+    padding: 0 1rem;
+    height: auto;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #0d1117;
+    border-bottom: 1px solid #30363d;
+    flex-direction: column;
+    gap: 0;
+    padding: 1rem;
+    border: none;
+  }
+
+  .navbar-menu.open {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: 0.75rem 0;
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  .user-section {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem 0 0 0;
+    border-left: none;
+    border-top: 1px solid #30363d;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .username {
+    display: block;
+    text-align: left;
+    min-width: auto;
+  }
+
+  .logout-btn {
+    width: 100%;
+  }
+}
+
+
+
+
+/* nav {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 2px solid white;
+}
+
+nav img {
+  height: 50px;
+  border-radius: 100%;
+}
+nav div {
+  display: flex;
+}
+
+nav h3 {
+  margin-left: 15px;
+  color: white;
+}
+
+nav p {
+  margin-left: 50px;
+  font-weight: bold;
+  color: white;
+}
+
+nav h3:hover,
+nav p:hover {
+  text-decoration: underline;
+} */

@@ -1,0 +1,143 @@
+.commit-history {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 1.5rem;
+  color: #c9d1d9;
+}
+
+.commit-history h3 {
+  margin: 0 0 1rem 0;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.commit-item {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  padding: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.commit-item:hover {
+  border-color: #58a6ff;
+  background: rgba(88, 166, 255, 0.05);
+}
+
+.commit-hash {
+  color: #58a6ff;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.commit-message {
+  color: #c9d1d9;
+  margin: 0.5rem 0;
+}
+
+.commit-meta {
+  color: #8b949e;
+  font-size: 0.9rem;
+}
+
+.commit-detail {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #30363d;
+}
+
+.commit-detail h4 {
+  margin: 0 0 1rem 0;
+  color: #c9d1d9;
+}
+
+.commit-detail p {
+  color: #8b949e;
+  margin: 0.5rem 0;
+}
+
+/* Branch Manager */
+.branch-manager {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 1.5rem;
+  color: #c9d1d9;
+}
+
+.branch-manager h3 {
+  margin: 0 0 1rem 0;
+}
+
+.branch-form {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.branch-form input {
+  flex: 1;
+  padding: 0.75rem;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  color: #c9d1d9;
+}
+
+.branch-form input:focus {
+  outline: none;
+  border-color: #58a6ff;
+}
+
+.branches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.branch-item {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  padding: 1rem;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.branch-item strong {
+  color: #58a6ff;
+}
+
+.current-badge {
+  background: #238636;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.btn-small {
+  background: #30363d;
+  color: #c9d1d9;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-small:hover {
+  background: #58a6ff;
+  color: #fff;
+}
+
+.empty {
+  color: #8b949e;
+}
