@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import api from "../../api";
+import api from "../../config/api";
+
 
 const FileList = ({ repoId }) => {
   const [files, setFiles] = useState([]);
