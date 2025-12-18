@@ -1,13 +1,19 @@
 import axios from "axios";
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+if (!BASE_URL) {
+  console.error("❌ VITE_API_BASE_URL is missing");
+}
+
 const api = axios.create({
-  baseURL: "https://backendgithub-uz08.onrender.com/api",
+  baseURL: BASE_URL,
+  withCredentials: true,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-// Attach token automatically
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -18,7 +24,5 @@ api.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
-
-
 
 export default api;

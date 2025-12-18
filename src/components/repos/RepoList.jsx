@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import api from "../../api";
+import api from "../../config/api";
+
 import { Link } from "react-router-dom";
 
 const RepoList = () => {

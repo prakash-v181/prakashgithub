@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
-import api from "../../api";
+import api from "../../config/api";
 import { useAuth } from "../../authContext";
 import CommitList from "../commits/CommitList";
 import UploadFile from "./UploadFile";

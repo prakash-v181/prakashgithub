@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useAuth } from "../../authContext";
 
 import { PageHeader } from "@primer/react/drafts";
@@ -8,6 +7,10 @@ import "./auth.css";
 
 import logo from "../../assets/github-mark-white.svg";
 import { Link } from "react-router-dom";
+
+
+// ✅ USE CENTRAL API CONFIG
+import api from "../../config/api";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -23,14 +26,12 @@ const Signup = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        "https://backendgithub-uz08.onrender.com/api/auth/register",
-        {
-          email,
-          username,
-          password,
-        }
-      );
+      // ✅ CORRECT API CALL (NO HARDCODED URL)
+      const res = await api.post("/auth/register", {
+        username,
+        email,
+        password,
+      });
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.userId);

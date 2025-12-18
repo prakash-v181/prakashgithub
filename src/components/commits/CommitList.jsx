@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import api from "../../api";
-
+import api from "../../config/api";
 const CommitList = ({ repoId, isOwner }) => {
   const [commits, setCommits] = useState([]);
   const [message, setMessage] = useState("");

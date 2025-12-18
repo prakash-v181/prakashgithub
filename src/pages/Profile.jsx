@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import api from "../api";
+import api from "../../config/api";
+
 
 const Profile = () => {
   const { username } = useParams();

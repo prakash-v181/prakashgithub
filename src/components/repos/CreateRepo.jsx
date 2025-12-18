@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
-import api from "../../api";
+import api from "../../config/api";
+
 
 const CreateRepo = () => {
   const navigate = useNavigate();

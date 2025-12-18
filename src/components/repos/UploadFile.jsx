@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import api from "../../api";
+import api from "../../config/api";
+
 
 const UploadFile = ({ repoId, onUploadSuccess }) => {
   const [file, setFile] = useState(null);
